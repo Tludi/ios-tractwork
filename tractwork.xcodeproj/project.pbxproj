@@ -12,6 +12,8 @@
 		00F066F91D656334003F5EAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F066F71D656334003F5EAE /* Main.storyboard */; };
 		00F066FB1D656334003F5EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F066FA1D656334003F5EAE /* Assets.xcassets */; };
 		00F066FE1D656334003F5EAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F066FC1D656334003F5EAE /* LaunchScreen.storyboard */; };
+		00F067061D65637F003F5EAE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 00F067051D65637F003F5EAE /* Podfile */; };
+		E11325F50B818E27DBD213A1 /* Pods_tractwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312B76FB39A2CF8D349CC3E2 /* Pods_tractwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,10 @@
 		00F066FA1D656334003F5EAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00F066FD1D656334003F5EAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00F066FF1D656334003F5EAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00F067051D65637F003F5EAE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		095D54C0F201AEC4EA00893D /* Pods-tractwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.release.xcconfig"; sourceTree = "<group>"; };
+		312B76FB39A2CF8D349CC3E2 /* Pods_tractwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tractwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1942B52D2B1341201A8D69F /* Pods-tractwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E11325F50B818E27DBD213A1 /* Pods_tractwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,9 @@
 			children = (
 				00F066F21D656334003F5EAE /* tractwork */,
 				00F066F11D656334003F5EAE /* Products */,
+				00F067051D65637F003F5EAE /* Podfile */,
+				4A5718B471E26F5EDFC5B1E0 /* Pods */,
+				DA2EB02510CEF5BCA1763A00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +74,23 @@
 			path = tractwork;
 			sourceTree = "<group>";
 		};
+		4A5718B471E26F5EDFC5B1E0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B1942B52D2B1341201A8D69F /* Pods-tractwork.debug.xcconfig */,
+				095D54C0F201AEC4EA00893D /* Pods-tractwork.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DA2EB02510CEF5BCA1763A00 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				312B76FB39A2CF8D349CC3E2 /* Pods_tractwork.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00F067021D656334003F5EAE /* Build configuration list for PBXNativeTarget "tractwork" */;
 			buildPhases = (
+				A81ECBBFE3CAF2B963E8D8A7 /* [CP] Check Pods Manifest.lock */,
 				00F066EC1D656333003F5EAE /* Sources */,
 				00F066ED1D656333003F5EAE /* Frameworks */,
 				00F066EE1D656333003F5EAE /* Resources */,
+				289206E6267CF45C39E450E0 /* [CP] Embed Pods Frameworks */,
+				BF4BF9557187F48E5C37029A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +126,7 @@
 				TargetAttributes = {
 					00F066EF1D656333003F5EAE = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = LWH67H9CS7;
 					};
 				};
 			};
@@ -124,11 +155,60 @@
 			files = (
 				00F066FE1D656334003F5EAE /* LaunchScreen.storyboard in Resources */,
 				00F066FB1D656334003F5EAE /* Assets.xcassets in Resources */,
+				00F067061D65637F003F5EAE /* Podfile in Resources */,
 				00F066F91D656334003F5EAE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		289206E6267CF45C39E450E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tractwork/Pods-tractwork-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A81ECBBFE3CAF2B963E8D8A7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BF4BF9557187F48E5C37029A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tractwork/Pods-tractwork-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00F066EC1D656333003F5EAE /* Sources */ = {
@@ -249,23 +329,31 @@
 		};
 		00F067031D656334003F5EAE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1942B52D2B1341201A8D69F /* Pods-tractwork.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = tractwork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.diligentagility.tractwork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		00F067041D656334003F5EAE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 095D54C0F201AEC4EA00893D /* Pods-tractwork.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = tractwork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.diligentagility.tractwork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -288,6 +376,7 @@
 				00F067041D656334003F5EAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
