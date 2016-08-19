@@ -8,23 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		00F066F41D656334003F5EAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F066F31D656334003F5EAE /* AppDelegate.swift */; };
-		00F066F61D656334003F5EAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F066F51D656334003F5EAE /* ViewController.swift */; };
 		00F066F91D656334003F5EAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F066F71D656334003F5EAE /* Main.storyboard */; };
 		00F066FB1D656334003F5EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F066FA1D656334003F5EAE /* Assets.xcassets */; };
 		00F066FE1D656334003F5EAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F066FC1D656334003F5EAE /* LaunchScreen.storyboard */; };
 		00F067061D65637F003F5EAE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 00F067051D65637F003F5EAE /* Podfile */; };
+		00F067081D6633A1003F5EAE /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F067071D6633A1003F5EAE /* TodayViewController.swift */; };
+		00F0670A1D667EB9003F5EAE /* TimePunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F067091D667EB9003F5EAE /* TimePunch.swift */; };
 		E11325F50B818E27DBD213A1 /* Pods_tractwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312B76FB39A2CF8D349CC3E2 /* Pods_tractwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00F066F01D656334003F5EAE /* tractwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tractwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F066F31D656334003F5EAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		00F066F51D656334003F5EAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		00F066F81D656334003F5EAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00F066FA1D656334003F5EAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00F066FD1D656334003F5EAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00F066FF1D656334003F5EAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F067051D65637F003F5EAE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		00F067071D6633A1003F5EAE /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayViewController.swift; path = ../TodayViewController.swift; sourceTree = "<group>"; };
+		00F067091D667EB9003F5EAE /* TimePunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePunch.swift; sourceTree = "<group>"; };
 		095D54C0F201AEC4EA00893D /* Pods-tractwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.release.xcconfig"; sourceTree = "<group>"; };
 		312B76FB39A2CF8D349CC3E2 /* Pods_tractwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tractwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1942B52D2B1341201A8D69F /* Pods-tractwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,11 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				00F066F31D656334003F5EAE /* AppDelegate.swift */,
-				00F066F51D656334003F5EAE /* ViewController.swift */,
+				00F067071D6633A1003F5EAE /* TodayViewController.swift */,
 				00F066F71D656334003F5EAE /* Main.storyboard */,
 				00F066FA1D656334003F5EAE /* Assets.xcassets */,
 				00F066FC1D656334003F5EAE /* LaunchScreen.storyboard */,
 				00F066FF1D656334003F5EAE /* Info.plist */,
+				00F067091D667EB9003F5EAE /* TimePunch.swift */,
 			);
 			path = tractwork;
 			sourceTree = "<group>";
@@ -215,8 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00F066F61D656334003F5EAE /* ViewController.swift in Sources */,
+				00F0670A1D667EB9003F5EAE /* TimePunch.swift in Sources */,
 				00F066F41D656334003F5EAE /* AppDelegate.swift in Sources */,
+				00F067081D6633A1003F5EAE /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
