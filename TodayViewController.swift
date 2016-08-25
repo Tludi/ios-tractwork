@@ -10,12 +10,46 @@ import UIKit
 import RealmSwift
 
 class TodayViewController: UIViewController{
+  
+  let realm = try! Realm()
+  let timePunches = try! Realm().objects(TimePunch)
+  var currentStatus = false
+  let date = NSDate()
+  
+  // attributes for TimePunch
+//  dynamic var id = ""
+//  dynamic var punchTime = "time"
+//  dynamic var status = false
 
+  @IBAction func clearTimePunches(sender: UIBarButtonItem) {
+    try! realm.write {
+      realm.deleteAll()
+    }
+    timepunchTable.reloadData()
+    print("\(timePunches.count) timePunches")
+  }
+  
   @IBOutlet weak var timepunchTable: UITableView!
   @IBOutlet weak var todayLabel: UIView!
   
   @IBOutlet weak var timepunchButtonOutlet: UIButton!
   @IBAction func timepunchButton(sender: UIButton) {
+//    timePunch.id = "1"
+//    timePunch.punchTime = "now"
+//    timePunch.status = true
+    
+    try! realm.write {
+      let newTimePunch = TimePunch()
+      currentStatus = !currentStatus
+      newTimePunch.id = NSUUID().UUIDString
+      newTimePunch.punchTime = "\(date)"
+      newTimePunch.status = currentStatus
+      print(newTimePunch.punchTime)
+      realm.add(newTimePunch)
+    }
+    print("\(timePunches.count) timePunches")
+    timepunchTable.reloadData()
+    
     
   }
   
@@ -49,17 +83,22 @@ class TodayViewController: UIViewController{
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return timePunches.count
     }
 
   
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("timepunchCell", forIndexPath: indexPath)
+      let timePunch = timePunches[indexPath.row]
+      if timePunch.status {
+        cell.detailTextLabel?.text = "IN"
+      } else {
+        cell.detailTextLabel?.text = "OUT"
+      }
+      cell.textLabel?.text = timePunch.punchTime
+//      cell.textLabel?.text = "\(date)"
 
-      cell.detailTextLabel?.text = "oot"
-        // Configure the cell...
-
-        return cell
+      return cell
     }
   
 
