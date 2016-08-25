@@ -16,6 +16,9 @@ class TodayViewController: UIViewController{
   var currentStatus = false
   let date = NSDate()
   
+  @IBOutlet weak var dayNameLabel: UILabel!
+  @IBOutlet weak var dayNumberLabel: UILabel!
+  
   // attributes for TimePunch
 //  dynamic var id = ""
 //  dynamic var punchTime = "time"
@@ -30,7 +33,14 @@ class TodayViewController: UIViewController{
   }
   
   @IBOutlet weak var timepunchTable: UITableView!
+  @IBOutlet weak var weekTable: UITableView!
+  
+  
+  
+  
   @IBOutlet weak var todayLabel: UIView!
+  @IBOutlet weak var nsDateLabel: UILabel!
+  @IBOutlet weak var testForWorkdayLabel: UILabel!
   
   @IBOutlet weak var timepunchButtonOutlet: UIButton!
   @IBAction func timepunchButton(sender: UIButton) {
@@ -49,12 +59,49 @@ class TodayViewController: UIViewController{
     }
     print("\(timePunches.count) timePunches")
     timepunchTable.reloadData()
+  }
+  
+  
+  @IBAction func checkWorkday(sender: UIBarButtonItem) {
+    let workday = DA_workday()
+    let todaysWorkday = workday.checkIfTodaysWorkdayExists()
     
+    if todaysWorkday {
+      testForWorkdayLabel.text = "Today has a workday"
+    } else {
+      testForWorkdayLabel.text = "Today is missing a workday"
+    }
+  }
+  
+  @IBAction func addWorkday(sender: UIBarButtonItem) {
+    let workday = DA_workday()
+    
+    workday.createWorkday()
     
   }
   
+  @IBAction func showWeekButton(sender: UIButton) {
+    timepunchTable.hidden = true
+    weekTable.hidden = false
+  }
+  
+  @IBAction func showTodayButton(sender: UIButton) {
+    timepunchTable.hidden = false
+    weekTable.hidden = true
+  }
+  
+  //**** process view  ****//
+  
   override func viewDidLoad() {
-      super.viewDidLoad()
+    super.viewDidLoad()
+    weekTable.hidden = true
+    
+    let testDate = DA_Date()
+    dayNameLabel.text = testDate.DayOfTheWeek()
+    dayNumberLabel.text = testDate.NumberOfTheDay()
+    nsDateLabel.textColor = UIColor.whiteColor()
+    nsDateLabel.text = "\(DA_Date().date)"
+    
     
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -88,17 +135,25 @@ class TodayViewController: UIViewController{
 
   
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      if tableView == timepunchTable {
+      
         let cell = tableView.dequeueReusableCellWithIdentifier("timepunchCell", forIndexPath: indexPath)
-      let timePunch = timePunches[indexPath.row]
-      if timePunch.status {
-        cell.detailTextLabel?.text = "IN"
-      } else {
-        cell.detailTextLabel?.text = "OUT"
-      }
-      cell.textLabel?.text = timePunch.punchTime
-//      cell.textLabel?.text = "\(date)"
+        let timePunch = timePunches[indexPath.row]
+        if timePunch.status {
+          cell.detailTextLabel?.text = "IN"
+        } else {
+          cell.detailTextLabel?.text = "OUT"
+        }
+        cell.textLabel?.text = timePunch.punchTime
+  //      cell.textLabel?.text = "\(date)"
 
-      return cell
+        return cell
+      } else {
+        let cell = tableView.dequeueReusableCellWithIdentifier("weekCell", forIndexPath: indexPath)
+
+        cell.detailTextLabel?.text = "Week oot"
+        return cell
+      }
     }
   
 

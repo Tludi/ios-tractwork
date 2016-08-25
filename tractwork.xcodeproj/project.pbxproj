@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		009CE1D61D6F6AA1006FF612 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CE1D51D6F6AA1006FF612 /* DateFormatting.swift */; };
+		009CE1D81D6F9EA0006FF612 /* WeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CE1D71D6F9EA0006FF612 /* WeekViewController.swift */; };
 		00F066F41D656334003F5EAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F066F31D656334003F5EAE /* AppDelegate.swift */; };
 		00F066F91D656334003F5EAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F066F71D656334003F5EAE /* Main.storyboard */; };
 		00F066FB1D656334003F5EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F066FA1D656334003F5EAE /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		009CE1D51D6F6AA1006FF612 /* DateFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
+		009CE1D71D6F9EA0006FF612 /* WeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekViewController.swift; sourceTree = "<group>"; };
 		00F066F01D656334003F5EAE /* tractwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tractwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F066F31D656334003F5EAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F066F81D656334003F5EAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -66,13 +70,15 @@
 		00F066F21D656334003F5EAE /* tractwork */ = {
 			isa = PBXGroup;
 			children = (
+				00F066F71D656334003F5EAE /* Main.storyboard */,
+				009CE1D71D6F9EA0006FF612 /* WeekViewController.swift */,
 				00F066F31D656334003F5EAE /* AppDelegate.swift */,
 				00F067071D6633A1003F5EAE /* TodayViewController.swift */,
-				00F066F71D656334003F5EAE /* Main.storyboard */,
 				00F066FA1D656334003F5EAE /* Assets.xcassets */,
 				00F066FC1D656334003F5EAE /* LaunchScreen.storyboard */,
 				00F066FF1D656334003F5EAE /* Info.plist */,
 				00F067091D667EB9003F5EAE /* TimePunch.swift */,
+				009CE1D51D6F6AA1006FF612 /* DateFormatting.swift */,
 			);
 			path = tractwork;
 			sourceTree = "<group>";
@@ -218,6 +224,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				009CE1D81D6F9EA0006FF612 /* WeekViewController.swift in Sources */,
+				009CE1D61D6F6AA1006FF612 /* DateFormatting.swift in Sources */,
 				00F0670A1D667EB9003F5EAE /* TimePunch.swift in Sources */,
 				00F066F41D656334003F5EAE /* AppDelegate.swift in Sources */,
 				00F067081D6633A1003F5EAE /* TodayViewController.swift in Sources */,
