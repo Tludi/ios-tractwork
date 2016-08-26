@@ -82,27 +82,31 @@
                                     <outlet property="delegate" destination="TDH-bb-wp8" id="DJG-xN-zbV"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3C5-cB-qkE">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3C5-cB-qkE">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lb-ej-LaH">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
                                         <state key="normal" title="Today">
-                                            <color key="titleColor" red="0.039215686274509803" green="0.1803921568627451" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.023529411764705882" green="0.23529411764705882" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="showTodayButton:" destination="TDH-bb-wp8" eventType="touchUpInside" id="xn7-bX-Ofs"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.46274509803921571" green="0.58823529411764708" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.53333333329999999" green="0.65098039220000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="29L-hD-stv"/>
                                     <constraint firstAttribute="height" constant="50" id="3Ck-dL-aok"/>
                                     <constraint firstItem="3Lb-ej-LaH" firstAttribute="centerY" secondItem="3C5-cB-qkE" secondAttribute="centerY" id="5SP-Dq-hce"/>
                                     <constraint firstAttribute="width" constant="200" id="Ag7-c8-fvV"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Lb-ej-LaH" secondAttribute="trailing" id="Nfm-Tz-zFu"/>
                                     <constraint firstItem="3Lb-ej-LaH" firstAttribute="centerX" secondItem="3C5-cB-qkE" secondAttribute="centerX" id="bL4-SS-pnc"/>
+                                    <constraint firstItem="3Lb-ej-LaH" firstAttribute="top" secondItem="3C5-cB-qkE" secondAttribute="top" id="dF2-Ao-WNT"/>
+                                    <constraint firstAttribute="bottom" secondItem="3Lb-ej-LaH" secondAttribute="bottom" id="nCS-Jg-WQ7"/>
+                                    <constraint firstItem="3Lb-ej-LaH" firstAttribute="leading" secondItem="3C5-cB-qkE" secondAttribute="leading" id="zq6-5r-whr"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
@@ -113,7 +117,11 @@
                                         <exclude reference="3Ck-dL-aok"/>
                                         <exclude reference="Ag7-c8-fvV"/>
                                         <exclude reference="5SP-Dq-hce"/>
+                                        <exclude reference="Nfm-Tz-zFu"/>
                                         <exclude reference="bL4-SS-pnc"/>
+                                        <exclude reference="dF2-Ao-WNT"/>
+                                        <exclude reference="nCS-Jg-WQ7"/>
+                                        <exclude reference="zq6-5r-whr"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
@@ -125,29 +133,37 @@
                                         <include reference="3Ck-dL-aok"/>
                                         <exclude reference="Ag7-c8-fvV"/>
                                         <include reference="5SP-Dq-hce"/>
+                                        <include reference="Nfm-Tz-zFu"/>
                                         <include reference="bL4-SS-pnc"/>
+                                        <include reference="dF2-Ao-WNT"/>
+                                        <include reference="nCS-Jg-WQ7"/>
+                                        <include reference="zq6-5r-whr"/>
                                     </mask>
                                 </variation>
                             </view>
-                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQV-dw-zB2">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQV-dw-zB2">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3y2-i7-moh">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
                                         <state key="normal" title="Week">
-                                            <color key="titleColor" red="0.46274509803921571" green="0.58823529411764708" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.53333333333333333" green="0.65098039215686276" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="showWeekButton:" destination="TDH-bb-wp8" eventType="touchUpInside" id="1at-2x-9MB"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686274509803" green="0.1803921568627451" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.023529411764705882" green="0.23529411764705882" blue="0.21176470588235294" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3y2-i7-moh" secondAttribute="trailing" id="GFc-ML-CNf"/>
                                     <constraint firstAttribute="height" constant="50" id="O3b-5w-RTX"/>
                                     <constraint firstItem="3y2-i7-moh" firstAttribute="centerY" secondItem="kQV-dw-zB2" secondAttribute="centerY" id="YMX-RK-IyM"/>
                                     <constraint firstItem="3y2-i7-moh" firstAttribute="centerX" secondItem="kQV-dw-zB2" secondAttribute="centerX" id="Z6m-5O-8Vj"/>
+                                    <constraint firstAttribute="bottom" secondItem="3y2-i7-moh" secondAttribute="bottom" id="Zo9-zR-lav"/>
+                                    <constraint firstItem="3y2-i7-moh" firstAttribute="leading" secondItem="kQV-dw-zB2" secondAttribute="leading" id="dxv-Fd-Taz"/>
+                                    <constraint firstItem="3y2-i7-moh" firstAttribute="top" secondItem="kQV-dw-zB2" secondAttribute="top" id="ujX-HN-k34"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
@@ -155,8 +171,12 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="O3b-5w-RTX"/>
+                                        <exclude reference="GFc-ML-CNf"/>
                                         <exclude reference="YMX-RK-IyM"/>
                                         <exclude reference="Z6m-5O-8Vj"/>
+                                        <exclude reference="Zo9-zR-lav"/>
+                                        <exclude reference="dxv-Fd-Taz"/>
+                                        <exclude reference="ujX-HN-k34"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
@@ -165,26 +185,37 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="O3b-5w-RTX"/>
+                                        <include reference="GFc-ML-CNf"/>
                                         <include reference="YMX-RK-IyM"/>
                                         <include reference="Z6m-5O-8Vj"/>
+                                        <include reference="Zo9-zR-lav"/>
+                                        <include reference="dxv-Fd-Taz"/>
+                                        <include reference="ujX-HN-k34"/>
                                     </mask>
                                 </variation>
                             </view>
-                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGG-br-iZc">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGG-br-iZc">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ6-DC-LFs">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
                                         <state key="normal" title="4 Weeks">
-                                            <color key="titleColor" red="0.46274509800000002" green="0.58823529409999997" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.53333333333333333" green="0.65098039215686276" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="showFourWeekButton:" destination="TDH-bb-wp8" eventType="touchUpInside" id="oGi-y5-gYI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686274509803" green="0.1803921568627451" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.023529411764705882" green="0.23529411764705882" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="jJ6-DC-LFs" firstAttribute="leading" secondItem="gGG-br-iZc" secondAttribute="leading" id="7EO-y2-Y4O"/>
                                     <constraint firstItem="jJ6-DC-LFs" firstAttribute="centerX" secondItem="gGG-br-iZc" secondAttribute="centerX" id="GbU-uY-72Y"/>
                                     <constraint firstAttribute="height" constant="50" id="dUL-wu-IKS"/>
+                                    <constraint firstAttribute="bottom" secondItem="jJ6-DC-LFs" secondAttribute="bottom" id="lOV-HL-Ede"/>
+                                    <constraint firstAttribute="trailing" secondItem="jJ6-DC-LFs" secondAttribute="trailing" id="pgb-p7-4pv"/>
+                                    <constraint firstItem="jJ6-DC-LFs" firstAttribute="top" secondItem="gGG-br-iZc" secondAttribute="top" id="rJz-Q9-v5P"/>
                                     <constraint firstItem="jJ6-DC-LFs" firstAttribute="centerY" secondItem="gGG-br-iZc" secondAttribute="centerY" id="vAu-g7-ifX"/>
                                 </constraints>
                                 <variation key="default">
@@ -193,7 +224,11 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="dUL-wu-IKS"/>
+                                        <exclude reference="7EO-y2-Y4O"/>
                                         <exclude reference="GbU-uY-72Y"/>
+                                        <exclude reference="lOV-HL-Ede"/>
+                                        <exclude reference="pgb-p7-4pv"/>
+                                        <exclude reference="rJz-Q9-v5P"/>
                                         <exclude reference="vAu-g7-ifX"/>
                                     </mask>
                                 </variation>
@@ -203,7 +238,11 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="dUL-wu-IKS"/>
+                                        <include reference="7EO-y2-Y4O"/>
                                         <include reference="GbU-uY-72Y"/>
+                                        <include reference="lOV-HL-Ede"/>
+                                        <include reference="pgb-p7-4pv"/>
+                                        <include reference="rJz-Q9-v5P"/>
                                         <include reference="vAu-g7-ifX"/>
                                     </mask>
                                 </variation>
@@ -298,7 +337,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="456" width="600" height="344"/>
+                                    <rect key="frame" x="-81" y="98" width="26" height="97"/>
                                 </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="TDH-bb-wp8" id="Ie8-w2-NGZ"/>
@@ -532,11 +571,16 @@
                     <connections>
                         <outlet property="dayNameLabel" destination="QYB-b9-Dko" id="r3F-iD-19X"/>
                         <outlet property="dayNumberLabel" destination="lGj-En-mir" id="oUd-fT-VlX"/>
+                        <outlet property="fourWeekButtonLabel" destination="jJ6-DC-LFs" id="bN8-RG-7MM"/>
+                        <outlet property="fourWeekNavBox" destination="gGG-br-iZc" id="Xvh-V8-iD7"/>
                         <outlet property="nsDateLabel" destination="q4p-tL-AUp" id="ApH-qa-d8t"/>
                         <outlet property="testForWorkdayLabel" destination="VXR-hh-dpN" id="by6-WP-GEJ"/>
                         <outlet property="timepunchButtonOutlet" destination="8JK-us-J7g" id="usr-Ag-OMy"/>
                         <outlet property="timepunchTable" destination="rF9-Kr-0jH" id="DEO-hq-Asr"/>
-                        <outlet property="todayLabel" destination="3C5-cB-qkE" id="egH-ER-u3j"/>
+                        <outlet property="todayButtonLabel" destination="3Lb-ej-LaH" id="mo9-A0-Thc"/>
+                        <outlet property="todayNavBox" destination="3C5-cB-qkE" id="bDb-gt-tQG"/>
+                        <outlet property="weekButtonLabel" destination="3y2-i7-moh" id="41z-eR-WfY"/>
+                        <outlet property="weekNavBox" destination="kQV-dw-zB2" id="Q2w-Qt-jp6"/>
                         <outlet property="weekTable" destination="ptW-D3-0gE" id="G2U-C2-2al"/>
                     </connections>
                 </viewController>

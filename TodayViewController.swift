@@ -16,6 +16,9 @@ class TodayViewController: UIViewController{
   var currentStatus = false
   let date = NSDate()
   
+  let darkGreyNavColor = UIColor(red: 6.0/255.0, green: 60.0/255.0, blue: 54.0/255.0, alpha: 0.95)
+  let lightGreyNavColor = UIColor(red: 136.0/255.0, green: 166.0/255.0, blue: 173.0/255.0, alpha: 0.95)
+  
   @IBOutlet weak var dayNameLabel: UILabel!
   @IBOutlet weak var dayNumberLabel: UILabel!
   
@@ -32,21 +35,21 @@ class TodayViewController: UIViewController{
     print("\(timePunches.count) timePunches")
   }
   
+  //*** Tables ***//
   @IBOutlet weak var timepunchTable: UITableView!
   @IBOutlet weak var weekTable: UITableView!
   
   
   
-  
-  @IBOutlet weak var todayLabel: UIView!
+  //*** Labels ***//
   @IBOutlet weak var nsDateLabel: UILabel!
   @IBOutlet weak var testForWorkdayLabel: UILabel!
   
+  //*** Button Outlets ***//
   @IBOutlet weak var timepunchButtonOutlet: UIButton!
+  
+
   @IBAction func timepunchButton(sender: UIButton) {
-//    timePunch.id = "1"
-//    timePunch.punchTime = "now"
-//    timePunch.status = true
     
     try! realm.write {
       let newTimePunch = TimePunch()
@@ -80,21 +83,58 @@ class TodayViewController: UIViewController{
     
   }
   
+  
+  //*** Table Nav Bar ***//
+  
+  @IBOutlet weak var todayNavBox: UIView!
+  @IBOutlet weak var todayButtonLabel: UIButton!
+  @IBAction func showTodayButton(sender: UIButton) {
+    todayNavBox.backgroundColor = lightGreyNavColor
+    todayButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
+    weekNavBox.backgroundColor = darkGreyNavColor
+    weekButtonLabel.setTitleColor(lightGreyNavColor, forState: .Normal)
+    fourWeekNavBox.backgroundColor = darkGreyNavColor
+    fourWeekButtonLabel.setTitleColor(lightGreyNavColor, forState: .Normal)
+    
+    timepunchTable.hidden = false
+    weekTable.hidden = true
+  }
+  
+  
+  @IBOutlet weak var weekNavBox: UIView!
+  @IBOutlet weak var weekButtonLabel: UIButton!
   @IBAction func showWeekButton(sender: UIButton) {
+    todayNavBox.backgroundColor = darkGreyNavColor
+    todayButtonLabel.setTitleColor(lightGreyNavColor, forState: .Normal)
+    weekNavBox.backgroundColor = lightGreyNavColor
+    weekButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
+    fourWeekNavBox.backgroundColor = darkGreyNavColor
+    fourWeekButtonLabel.setTitleColor(lightGreyNavColor, forState: .Normal)
     timepunchTable.hidden = true
     weekTable.hidden = false
   }
   
-  @IBAction func showTodayButton(sender: UIButton) {
-    timepunchTable.hidden = false
-    weekTable.hidden = true
+  
+  @IBOutlet weak var fourWeekNavBox: UIView!
+  @IBOutlet weak var fourWeekButtonLabel: UIButton!
+  @IBAction func showFourWeekButton(sender: UIButton) {
+    todayNavBox.backgroundColor = darkGreyNavColor
+    todayButtonLabel.setTitleColor(lightGreyNavColor, forState: .Normal)
+    weekNavBox.backgroundColor = darkGreyNavColor
+    weekButtonLabel.setTitleColor(lightGreyNavColor, forState: .Normal)
+    fourWeekNavBox.backgroundColor = lightGreyNavColor
+    fourWeekButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
+
   }
+  
   
   //**** process view  ****//
   
   override func viewDidLoad() {
     super.viewDidLoad()
     weekTable.hidden = true
+    todayNavBox.backgroundColor = lightGreyNavColor
+    todayButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
     
     let testDate = DA_Date()
     dayNameLabel.text = testDate.DayOfTheWeek()
@@ -107,7 +147,6 @@ class TodayViewController: UIViewController{
     self.navigationController?.navigationBar.shadowImage = UIImage()
     self.navigationController?.navigationBar.translucent = true
     
-    todayLabel.backgroundColor = UIColor.grayColor()
     timepunchButtonOutlet.layer.cornerRadius = 75
       // Uncomment the following line to preserve selection between presentations
       // self.clearsSelectionOnViewWillAppear = false
@@ -151,7 +190,7 @@ class TodayViewController: UIViewController{
       } else {
         let cell = tableView.dequeueReusableCellWithIdentifier("weekCell", forIndexPath: indexPath)
 
-        cell.detailTextLabel?.text = "Week oot"
+        cell.textLabel!.text = "Week oot"
         return cell
       }
     }
