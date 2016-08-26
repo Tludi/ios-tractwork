@@ -18,6 +18,7 @@ class TodayViewController: UIViewController{
   
   let darkGreyNavColor = UIColor(red: 6.0/255.0, green: 60.0/255.0, blue: 54.0/255.0, alpha: 0.95)
   let lightGreyNavColor = UIColor(red: 136.0/255.0, green: 166.0/255.0, blue: 173.0/255.0, alpha: 0.95)
+  let tableColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
   
   @IBOutlet weak var dayNameLabel: UILabel!
   @IBOutlet weak var dayNumberLabel: UILabel!
@@ -132,7 +133,10 @@ class TodayViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    timepunchTable.backgroundColor = tableColor
+    weekTable.backgroundColor = tableColor
     weekTable.hidden = true
+    
     todayNavBox.backgroundColor = lightGreyNavColor
     todayButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
     
@@ -141,7 +145,6 @@ class TodayViewController: UIViewController{
     dayNumberLabel.text = testDate.NumberOfTheDay()
     nsDateLabel.textColor = UIColor.whiteColor()
     nsDateLabel.text = "\(DA_Date().date)"
-    
     
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
