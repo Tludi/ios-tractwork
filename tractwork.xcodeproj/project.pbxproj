@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001E90081D74ACA70007D6A8 /* TimePunchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001E90061D74ACA70007D6A8 /* TimePunchTableViewCell.swift */; };
+		001E90091D74ACA70007D6A8 /* TimePunchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001E90071D74ACA70007D6A8 /* TimePunchTableViewCell.xib */; };
 		009CE1D61D6F6AA1006FF612 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CE1D51D6F6AA1006FF612 /* DateFormatting.swift */; };
-		009CE1D81D6F9EA0006FF612 /* WeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CE1D71D6F9EA0006FF612 /* WeekViewController.swift */; };
+		00A4B3751D74BFB7007C9F37 /* WeekHoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A4B3731D74BFB7007C9F37 /* WeekHoursTableViewCell.swift */; };
+		00A4B3761D74BFB7007C9F37 /* WeekHoursTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A4B3741D74BFB7007C9F37 /* WeekHoursTableViewCell.xib */; };
 		00F066F41D656334003F5EAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F066F31D656334003F5EAE /* AppDelegate.swift */; };
 		00F066F91D656334003F5EAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F066F71D656334003F5EAE /* Main.storyboard */; };
 		00F066FB1D656334003F5EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F066FA1D656334003F5EAE /* Assets.xcassets */; };
@@ -20,8 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		001E90061D74ACA70007D6A8 /* TimePunchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePunchTableViewCell.swift; sourceTree = "<group>"; };
+		001E90071D74ACA70007D6A8 /* TimePunchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePunchTableViewCell.xib; sourceTree = "<group>"; };
 		009CE1D51D6F6AA1006FF612 /* DateFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
-		009CE1D71D6F9EA0006FF612 /* WeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekViewController.swift; sourceTree = "<group>"; };
+		00A4B3731D74BFB7007C9F37 /* WeekHoursTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekHoursTableViewCell.swift; sourceTree = "<group>"; };
+		00A4B3741D74BFB7007C9F37 /* WeekHoursTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekHoursTableViewCell.xib; sourceTree = "<group>"; };
 		00F066F01D656334003F5EAE /* tractwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tractwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F066F31D656334003F5EAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F066F81D656334003F5EAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,6 +54,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001E900E1D74AF8F0007D6A8 /* nibs */ = {
+			isa = PBXGroup;
+			children = (
+				001E90061D74ACA70007D6A8 /* TimePunchTableViewCell.swift */,
+				001E90071D74ACA70007D6A8 /* TimePunchTableViewCell.xib */,
+				00A4B3731D74BFB7007C9F37 /* WeekHoursTableViewCell.swift */,
+				00A4B3741D74BFB7007C9F37 /* WeekHoursTableViewCell.xib */,
+			);
+			name = nibs;
+			sourceTree = "<group>";
+		};
+		001E900F1D74AFB30007D6A8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				00F067091D667EB9003F5EAE /* TimePunch.swift */,
+				009CE1D51D6F6AA1006FF612 /* DateFormatting.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		001E90101D74AFD50007D6A8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				00F066FC1D656334003F5EAE /* LaunchScreen.storyboard */,
+				00F066F31D656334003F5EAE /* AppDelegate.swift */,
+				00F066FA1D656334003F5EAE /* Assets.xcassets */,
+				00F066FF1D656334003F5EAE /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
 		00F066E71D656333003F5EAE = {
 			isa = PBXGroup;
 			children = (
@@ -71,14 +108,10 @@
 			isa = PBXGroup;
 			children = (
 				00F066F71D656334003F5EAE /* Main.storyboard */,
-				009CE1D71D6F9EA0006FF612 /* WeekViewController.swift */,
-				00F066F31D656334003F5EAE /* AppDelegate.swift */,
 				00F067071D6633A1003F5EAE /* TodayViewController.swift */,
-				00F066FA1D656334003F5EAE /* Assets.xcassets */,
-				00F066FC1D656334003F5EAE /* LaunchScreen.storyboard */,
-				00F066FF1D656334003F5EAE /* Info.plist */,
-				00F067091D667EB9003F5EAE /* TimePunch.swift */,
-				009CE1D51D6F6AA1006FF612 /* DateFormatting.swift */,
+				001E900E1D74AF8F0007D6A8 /* nibs */,
+				001E900F1D74AFB30007D6A8 /* Data */,
+				001E90101D74AFD50007D6A8 /* Support Files */,
 			);
 			path = tractwork;
 			sourceTree = "<group>";
@@ -162,8 +195,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001E90091D74ACA70007D6A8 /* TimePunchTableViewCell.xib in Resources */,
 				00F066FE1D656334003F5EAE /* LaunchScreen.storyboard in Resources */,
 				00F066FB1D656334003F5EAE /* Assets.xcassets in Resources */,
+				00A4B3761D74BFB7007C9F37 /* WeekHoursTableViewCell.xib in Resources */,
 				00F067061D65637F003F5EAE /* Podfile in Resources */,
 				00F066F91D656334003F5EAE /* Main.storyboard in Resources */,
 			);
@@ -224,9 +259,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009CE1D81D6F9EA0006FF612 /* WeekViewController.swift in Sources */,
 				009CE1D61D6F6AA1006FF612 /* DateFormatting.swift in Sources */,
+				00A4B3751D74BFB7007C9F37 /* WeekHoursTableViewCell.swift in Sources */,
 				00F0670A1D667EB9003F5EAE /* TimePunch.swift in Sources */,
+				001E90081D74ACA70007D6A8 /* TimePunchTableViewCell.swift in Sources */,
 				00F066F41D656334003F5EAE /* AppDelegate.swift in Sources */,
 				00F067081D6633A1003F5EAE /* TodayViewController.swift in Sources */,
 			);

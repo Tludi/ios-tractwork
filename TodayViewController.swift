@@ -63,6 +63,7 @@ class TodayViewController: UIViewController{
     }
     print("\(timePunches.count) timePunches")
     timepunchTable.reloadData()
+    todayActive()
   }
   
   
@@ -90,6 +91,10 @@ class TodayViewController: UIViewController{
   @IBOutlet weak var todayNavBox: UIView!
   @IBOutlet weak var todayButtonLabel: UIButton!
   @IBAction func showTodayButton(sender: UIButton) {
+    todayActive()
+  }
+  
+  func todayActive() {
     todayNavBox.backgroundColor = lightGreyNavColor
     todayButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
     weekNavBox.backgroundColor = darkGreyNavColor
@@ -133,6 +138,10 @@ class TodayViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    timepunchTable.registerNib(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
+    weekTable.registerNib(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
+    
     timepunchTable.backgroundColor = tableColor
     weekTable.backgroundColor = tableColor
     weekTable.hidden = true
@@ -164,6 +173,7 @@ class TodayViewController: UIViewController{
     }
 
     // MARK: - Table view data source
+  
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -178,23 +188,30 @@ class TodayViewController: UIViewController{
   
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       if tableView == timepunchTable {
-      
-        let cell = tableView.dequeueReusableCellWithIdentifier("timepunchCell", forIndexPath: indexPath)
+        
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("timePunchCell") as! TimePunchTableViewCell
         let timePunch = timePunches[indexPath.row]
+//        let timePunchLabel = cell.contentView.viewWithTag(1) as! UILabel
+//        let statusLabel = cell.contentView.viewWithTag(2) as! UILabel
         if timePunch.status {
-          cell.detailTextLabel?.text = "IN"
+          cell.statusLabel.text = "IN"
         } else {
-          cell.detailTextLabel?.text = "OUT"
+          cell.statusLabel.text = "OUT"
         }
-        cell.textLabel?.text = timePunch.punchTime
-  //      cell.textLabel?.text = "\(date)"
+//        timePunchLabel.text = timePunch.punchTime
+        cell.timePunchLabel.text = timePunch.punchTime
 
         return cell
+      } else if tableView == weekTable {
+        let cell = tableView.dequeueReusableCellWithIdentifier("weekHoursCell") as! WeekHoursTableViewCell
+      
+          cell.weekHoursLabel.text = "Week oot"
+          return cell
+        
       } else {
-        let cell = tableView.dequeueReusableCellWithIdentifier("weekCell", forIndexPath: indexPath)
-
-        cell.textLabel!.text = "Week oot"
-        return cell
+        let cell = tableView.dequeueReusableCellWithIdentifier("notUsed")
+        return cell!
       }
     }
   
