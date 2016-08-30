@@ -15,6 +15,8 @@ class TodayViewController: UIViewController{
   let timePunches = try! Realm().objects(TimePunch)
   var currentStatus = false
   let date = NSDate()
+  var todaysWorkday = Workday()
+  
   
   let darkGreyNavColor = UIColor(red: 6.0/255.0, green: 60.0/255.0, blue: 54.0/255.0, alpha: 0.95)
   let lightGreyNavColor = UIColor(red: 136.0/255.0, green: 166.0/255.0, blue: 173.0/255.0, alpha: 0.95)
@@ -49,14 +51,19 @@ class TodayViewController: UIViewController{
   //*** Button Outlets ***//
   @IBOutlet weak var timepunchButtonOutlet: UIButton!
   
-
+  
+  
+  // *** Actions for touching in/out button
   @IBAction func timepunchButton(sender: UIButton) {
+    let newTimePunch = TimePunch()
+    let punchTime = NSDate()
+    
+    
     
     try! realm.write {
-      let newTimePunch = TimePunch()
       currentStatus = !currentStatus
       newTimePunch.id = NSUUID().UUIDString
-      newTimePunch.punchTime = "\(date)"
+      newTimePunch.punchTime = "\(punchTime)"
       newTimePunch.status = currentStatus
       print(newTimePunch.punchTime)
       realm.add(newTimePunch)
@@ -69,7 +76,7 @@ class TodayViewController: UIViewController{
   
   @IBAction func checkWorkday(sender: UIBarButtonItem) {
     let workday = DA_workday()
-    let todaysWorkday = workday.checkIfTodaysWorkdayExists()
+    let todaysWorkday = workday.doesTodaysWorkdayExist()
     
     if todaysWorkday {
       testForWorkdayLabel.text = "Today has a workday"
@@ -81,7 +88,7 @@ class TodayViewController: UIViewController{
   @IBAction func addWorkday(sender: UIBarButtonItem) {
     let workday = DA_workday()
     
-    workday.createWorkday()
+    workday.createTodaysWorkday()
     
   }
   
@@ -135,6 +142,24 @@ class TodayViewController: UIViewController{
   
   
   //**** process view  ****//
+  
+  override func viewWillAppear(animated: Bool) {
+    let workday = DA_workday()
+    if workday.doesTodaysWorkdayExist() {
+      // if todays workday exists, get todays workday
+      testForWorkdayLabel.text = "Workday Exists"
+      let todaysWorkday = workday.retrieveTodaysWorkday()
+      print(todaysWorkday.dayDate)
+      print("Workday exists for today")
+    } else {
+      // if todays workday does not exist, create new workday
+      testForWorkdayLabel.text = "Creating Workday for today"
+      workday.createTodaysWorkday()
+      print("Created Workday for today")
+    }
+  }
+  
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()

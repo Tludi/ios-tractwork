@@ -43,7 +43,7 @@ class DA_workday {
   
   let allWorkdays = try! Realm().objects(Workday)
   
-  func CheckForAnyWorkdays() -> Bool {
+  func areThereAnyWorkdays() -> Bool {
     if allWorkdays.count == 0 {
       return false
     } else {
@@ -51,7 +51,7 @@ class DA_workday {
     }
   }
   
-  func checkIfTodaysWorkdayExists() -> Bool {
+  func doesTodaysWorkdayExist() -> Bool {
     var response: Bool = false
     for i in 0 ..< allWorkdays.count {
       let workday = allWorkdays[i]
@@ -64,8 +64,21 @@ class DA_workday {
     return response
   }
   
+  func retrieveTodaysWorkday() -> Workday {
+    var todaysWorkday = Workday()
+    for i in 0 ..< allWorkdays.count {
+      let workday = allWorkdays[i]
+      if workday.dayDate == date {
+        todaysWorkday = workday
+      } else {
+        todaysWorkday = allWorkdays.last!
+      }
+    }
+    return todaysWorkday
+  }
   
-  func createWorkday() {
+  
+  func createTodaysWorkday() {
     let newWorkday = Workday()
     newWorkday.id = NSUUID().UUIDString
     newWorkday.dayDate = DA_Date().today()
