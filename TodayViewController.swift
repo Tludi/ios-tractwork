@@ -11,11 +11,14 @@ import RealmSwift
 
 class TodayViewController: UIViewController{
   
-  let realm = try! Realm()
-  let timePunches = try! Realm().objects(TimePunch)
   var currentStatus = false
+  
   let date = NSDate()
+  let realm = try! Realm()
+  
+  let timePunches = try! Realm().objects(TimePunch)
   var todaysWorkday = Workday()
+  var weekDays = try! Realm().objects(Workday) // need to limit for this week
   
   
   let darkGreyNavColor = UIColor(red: 6.0/255.0, green: 60.0/255.0, blue: 54.0/255.0, alpha: 0.95)
@@ -111,6 +114,7 @@ class TodayViewController: UIViewController{
     
     timepunchTable.hidden = false
     weekTable.hidden = true
+    timepunchTable.reloadData()
   }
   
   
@@ -125,6 +129,7 @@ class TodayViewController: UIViewController{
     fourWeekButtonLabel.setTitleColor(lightGreyNavColor, forState: .Normal)
     timepunchTable.hidden = true
     weekTable.hidden = false
+    weekTable.reloadData()
   }
   
   
@@ -167,12 +172,14 @@ class TodayViewController: UIViewController{
     timepunchTable.registerNib(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
     weekTable.registerNib(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
     
+    //*** set initial colors for tables ***//
     timepunchTable.backgroundColor = tableColor
     weekTable.backgroundColor = tableColor
     weekTable.hidden = true
     
     todayNavBox.backgroundColor = lightGreyNavColor
     todayButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
+    
     
     let testDate = DA_Date()
     dayNameLabel.text = testDate.DayOfTheWeek()
@@ -207,7 +214,13 @@ class TodayViewController: UIViewController{
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+      if tableView == timepunchTable {
         return timePunches.count
+      } else if tableView == weekTable {
+        return weekDays.count
+      } else {
+        return 2
+      }
     }
 
   
@@ -228,10 +241,15 @@ class TodayViewController: UIViewController{
         cell.timePunchLabel.text = timePunch.punchTime
 
         return cell
+        
+        
+        //*** Week Tab  ***//
       } else if tableView == weekTable {
         let cell = tableView.dequeueReusableCellWithIdentifier("weekHoursCell") as! WeekHoursTableViewCell
-      
-          cell.weekHoursLabel.text = "Week oot"
+        print ("pressed week")
+        print(weekDays.count)
+          let workday = weekDays[indexPath.row]
+          cell.weekHoursLabel.text = workday.dayDate
           return cell
         
       } else {
