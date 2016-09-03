@@ -8,17 +8,23 @@
 
 import UIKit
 import RealmSwift
+import AFDateHelper
 
 class TodayViewController: UIViewController{
   
   var currentStatus = false
   
-  let date = NSDate()
-  let realm = try! Realm()
-  
-  let timePunches = try! Realm().objects(TimePunch)
+  // DA Objects
+  let todaysDate = DA_Date()
   var todaysWorkday = Workday()
+  var testDate = NSDate()
+  
+  // Realm Database queries
+  let realm = try! Realm()
+  let timePunches = try! Realm().objects(TimePunch)
   var weekDays = try! Realm().objects(Workday) // need to limit for this week
+  
+  
   
   
   let darkGreyNavColor = UIColor(red: 6.0/255.0, green: 60.0/255.0, blue: 54.0/255.0, alpha: 0.95)
@@ -28,17 +34,12 @@ class TodayViewController: UIViewController{
   @IBOutlet weak var dayNameLabel: UILabel!
   @IBOutlet weak var dayNumberLabel: UILabel!
   
-  // attributes for TimePunch
-//  dynamic var id = ""
-//  dynamic var punchTime = "time"
-//  dynamic var status = false
 
   @IBAction func clearTimePunches(sender: UIBarButtonItem) {
     try! realm.write {
-      realm.deleteAll()
+      realm.delete(timePunches)
     }
     timepunchTable.reloadData()
-    print("\(timePunches.count) timePunches")
   }
   
   //*** Tables ***//
@@ -59,26 +60,26 @@ class TodayViewController: UIViewController{
   // *** Actions for touching in/out button
   @IBAction func timepunchButton(sender: UIButton) {
     let newTimePunch = TimePunch()
-    let punchTime = NSDate()
-    
+    let todaysTimePunches = todaysWorkday.timePunches
     
     
     try! realm.write {
       currentStatus = !currentStatus
       newTimePunch.id = NSUUID().UUIDString
-      newTimePunch.punchTime = "\(punchTime)"
+      newTimePunch.punchTime = NSDate()
       newTimePunch.status = currentStatus
-      print(newTimePunch.punchTime)
-      realm.add(newTimePunch)
+      
+      todaysTimePunches.append(newTimePunch)
+      
     }
-    print("\(timePunches.count) timePunches")
+    print("\(todaysTimePunches.count) timePunches")
     timepunchTable.reloadData()
     todayActive()
   }
   
   
   @IBAction func checkWorkday(sender: UIBarButtonItem) {
-    let workday = DA_workday()
+    let workday = DA_Workday()
     let todaysWorkday = workday.doesTodaysWorkdayExist()
     
     if todaysWorkday {
@@ -89,7 +90,7 @@ class TodayViewController: UIViewController{
   }
   
   @IBAction func addWorkday(sender: UIBarButtonItem) {
-    let workday = DA_workday()
+    let workday = DA_Workday()
     
     workday.createTodaysWorkday()
     
@@ -149,25 +150,28 @@ class TodayViewController: UIViewController{
   //**** process view  ****//
   
   override func viewWillAppear(animated: Bool) {
-    let workday = DA_workday()
-    if workday.doesTodaysWorkdayExist() {
-      // if todays workday exists, get todays workday
-      testForWorkdayLabel.text = "Workday Exists"
-      let todaysWorkday = workday.retrieveTodaysWorkday()
-      print(todaysWorkday.dayDate)
-      print("Workday exists for today")
-    } else {
-      // if todays workday does not exist, create new workday
-      testForWorkdayLabel.text = "Creating Workday for today"
-      workday.createTodaysWorkday()
-      print("Created Workday for today")
+    // retrieve or create todays workday
+    let workday = DA_Workday()
+    todaysWorkday = workday.retrieveTodaysWorkday()
+    print(todaysWorkday.dayDate)
+    print("\(todaysWorkday.timePunches.count) timePunches for today")
+    let timePunches = todaysWorkday.timePunches
+    for object in timePunches {
+      print(object.punchTime)
     }
+    
+    
+//    testDate = now.isToday?
+    
+    print("testing date \(testDate.toString(format: .Custom("dd MMM yyyy HH:mm:ss")))")
   }
   
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    print("\(timePunches.count) timepunches in database")
     
     timepunchTable.registerNib(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
     weekTable.registerNib(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
@@ -180,42 +184,30 @@ class TodayViewController: UIViewController{
     todayNavBox.backgroundColor = lightGreyNavColor
     todayButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
     
-    
-    let testDate = DA_Date()
-    dayNameLabel.text = testDate.DayOfTheWeek()
-    dayNumberLabel.text = testDate.NumberOfTheDay()
+    dayNameLabel.text = todaysDate.DayOfTheWeek()
+    dayNumberLabel.text = todaysDate.NumberOfTheDay()
     nsDateLabel.textColor = UIColor.whiteColor()
-    nsDateLabel.text = "\(DA_Date().date)"
+    nsDateLabel.text = "\(todaysDate.date)"
     
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
     self.navigationController?.navigationBar.translucent = true
     
     timepunchButtonOutlet.layer.cornerRadius = 75
-      // Uncomment the following line to preserve selection between presentations
-      // self.clearsSelectionOnViewWillAppear = false
-
-      // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-      // self.navigationItem.rightBarButtonItem = self.editButtonItem()
   }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
   
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
+  
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
       if tableView == timepunchTable {
-        return timePunches.count
+        let todaysTimePunches = todaysWorkday.timePunches
+        return todaysTimePunches.count
       } else if tableView == weekTable {
         return weekDays.count
       } else {
@@ -225,20 +217,25 @@ class TodayViewController: UIViewController{
 
   
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      let todaysTimePunches = todaysWorkday.timePunches
+//      for object in todaysTimePunches {
+//        print(object.punchTime)
+//      }
+      
       if tableView == timepunchTable {
         
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("timePunchCell") as! TimePunchTableViewCell
-        let timePunch = timePunches[indexPath.row]
-//        let timePunchLabel = cell.contentView.viewWithTag(1) as! UILabel
-//        let statusLabel = cell.contentView.viewWithTag(2) as! UILabel
+
+        let timePunch = todaysTimePunches[indexPath.row]
+
         if timePunch.status {
           cell.statusLabel.text = "IN"
         } else {
           cell.statusLabel.text = "OUT"
         }
 //        timePunchLabel.text = timePunch.punchTime
-        cell.timePunchLabel.text = timePunch.punchTime
+        cell.timePunchLabel.text = "\(timePunch.punchTime!.toString(format: .Custom("hh:mm:ss")))"
+//        cell.timePunchLabel.text = "Hello"
 
         return cell
         
@@ -246,8 +243,8 @@ class TodayViewController: UIViewController{
         //*** Week Tab  ***//
       } else if tableView == weekTable {
         let cell = tableView.dequeueReusableCellWithIdentifier("weekHoursCell") as! WeekHoursTableViewCell
-        print ("pressed week")
-        print(weekDays.count)
+//        print ("pressed week")
+//        print(weekDays.count)
           let workday = weekDays[indexPath.row]
           cell.weekHoursLabel.text = workday.dayDate
           return cell

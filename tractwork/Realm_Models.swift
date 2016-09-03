@@ -1,9 +1,11 @@
 //
-//  TimePunch.swift
+//  Realm_Models.swift
 //  Tractwork - Time Tracking
 //
 //  Created by manatee on 8/18/16.
 //  Copyright (c) 2016 diligentagility. All rights reserved.
+//
+//  Realm Database models
 //
 //*** Objects ***//
 //***************//
@@ -14,7 +16,7 @@
 
 import Foundation
 import RealmSwift
-
+import AFDateHelper
 
 class Workday: Object {
   dynamic var id = ""
@@ -29,13 +31,14 @@ class Workday: Object {
   
   let timePunches = List<TimePunch>()
   let projects = List<Project>()
-
+  
 }
+
 
 
 class TimePunch: Object {
   dynamic var id = ""
-  dynamic var punchTime = "time"
+  dynamic var punchTime: NSDate? = nil
   dynamic var status = false
   
   override static func primaryKey() -> String? {

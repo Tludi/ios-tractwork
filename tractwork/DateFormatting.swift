@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import RealmSwift
+//import RealmSwift
 
 class DA_Date {
   
@@ -34,59 +34,12 @@ class DA_Date {
     return dateFormatter.stringFromDate(date)
   }
   
+  func PunchTime(punchDate:NSDate) -> String {
+    dateFormatter.dateFormat = "h:mm a"
+    return dateFormatter.stringFromDate(punchDate)
+  }
+  
 }
 
 
-class DA_workday {
-  let realm = try! Realm()
-  let date = DA_Date().today()
-  
-  let allWorkdays = try! Realm().objects(Workday)
-  
-  func areThereAnyWorkdays() -> Bool {
-    if allWorkdays.count == 0 {
-      return false
-    } else {
-      return true
-    }
-  }
-  
-  func doesTodaysWorkdayExist() -> Bool {
-    var response: Bool = false
-    for i in 0 ..< allWorkdays.count {
-      let workday = allWorkdays[i]
-      if workday.dayDate == date {
-        response = true
-      } else {
-        response = false
-      }
-    }
-    return response
-  }
-  
-  func retrieveTodaysWorkday() -> Workday {
-    var todaysWorkday = Workday()
-    for i in 0 ..< allWorkdays.count {
-      let workday = allWorkdays[i]
-      if workday.dayDate == date {
-        todaysWorkday = workday
-      } else {
-        todaysWorkday = allWorkdays.last!
-      }
-    }
-    return todaysWorkday
-  }
-  
-  
-  func createTodaysWorkday() {
-    let newWorkday = Workday()
-    newWorkday.id = NSUUID().UUIDString
-    newWorkday.dayDate = DA_Date().today()
-    
-    try! realm.write() {
-      self.realm.add(newWorkday)
-    }
-    print("created workday")
-    print(allWorkdays.count)
-  }
-}
+
