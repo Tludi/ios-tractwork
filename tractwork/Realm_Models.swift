@@ -22,7 +22,7 @@ class Workday: Object {
   dynamic var id = ""
   dynamic var dayDate: NSDate? = nil
   dynamic var project = "general work"
-  dynamic var totalHoursWorked = 8
+  dynamic var totalHoursWorked = 0.0
   dynamic var worker = "milo"
   
   override static func primaryKey() -> String? {

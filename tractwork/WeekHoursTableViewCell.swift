@@ -11,6 +11,8 @@ import UIKit
 class WeekHoursTableViewCell: UITableViewCell {
 
   @IBOutlet weak var weekHoursLabel: UILabel!
+  @IBOutlet weak var totalHoursLabel: UILabel!
+  @IBOutlet weak var dayNameLabel: UILabel!
   
     override func awakeFromNib() {
         super.awakeFromNib()

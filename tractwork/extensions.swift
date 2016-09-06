@@ -26,6 +26,17 @@ extension Double {
     let divisor = pow(10.0, Double(places))
     return round(self * divisor) / divisor
   }
+  
+  func getHourAndMinuteOutput(total: Double) -> String {
+    // split total time into whole and decimal to convert to minutes
+    let total = modf(total)
+    let hr = Int(total.0)
+    let min = Int(total.1.roundToPlaces(2)*60)
+    print("\(total) hours calculated")
+    
+    let totalTimeText = "\(hr):\(min)"
+    return totalTimeText
+  }
 }
 
 
@@ -59,32 +70,44 @@ extension TodayViewController {
     let hour = Double(NSCalendar.currentCalendar().component(.Hour, fromDate: now))
     let minute = Double(NSCalendar.currentCalendar().component(.Minute, fromDate: now))/60
     let currentTime = hour + minute    // Need to change to current time
-    let fillerPunch = currentTime
+//    let fillerPunch = Double(now.hour() + (now.minute()*0.001))
+    print("\(currentTime) now")
     if myArray.count % 2 != 0 {
-      myArray.append(fillerPunch)
+      myArray.append(currentTime)
     }
     let partitionedArray = myArray.partitionBy(2)
     print("partitioned array \(partitionedArray)")
     return partitionedArray
   }
   
-  func calculateTotalTime(timePunches: List<TimePunch>) {
+  func calculateTotalTime(timePunches: List<TimePunch>, workday: Workday) {
+    // Start Counter for total time for the day
     var totalCounter = 0.0
+    // put the dayDate (NSDate?) for each day and put in array
     let pulledTimes = pullTimePunchTimes(timePunches) // [NSDate?]
+    // Convert NSDate? array to Double (hr.min) array
     let convertedTimes = convertNSDateToHourAndMin(pulledTimes) // [Double]
+    // partition Double array into pairs
     let partitionedTimes = sortArraybyTwos(convertedTimes) // [[Double]]
-    
+    // get difference in each in/out punches and add to total
     for bit in partitionedTimes {
       let difference = bit[1] - bit[0]
       totalCounter += difference
+      print("totalcounter \(totalCounter)")
     }
     
-    let total = modf(totalCounter)
-    let hr = Int(total.0)
-    let min = Int(total.1.roundToPlaces(2)*60)
-    print("\(timePunches.count) from calculations")
-    print("\(total) hours calculated")
+    let realm = try! Realm()
+    try! realm.write() {
+      workday.totalHoursWorked = totalCounter
+    }
     
-    totalTimeLabel.text = "\(hr):\(min)"
+    // split total time into whole and decimal to convert to minutes
+//    let total = modf(totalCounter)
+//    let hr = Int(total.0)
+//    let min = Int(total.1.roundToPlaces(2)*60)
+//    print("\(timePunches.count) from calculations")
+//    print("\(total) hours calculated")
+    
+    totalTimeLabel.text = totalCounter.getHourAndMinuteOutput(totalCounter)
   }
 }

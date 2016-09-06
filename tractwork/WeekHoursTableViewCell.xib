@@ -15,21 +15,53 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAe-70-KTh">
-                        <rect key="frame" x="8" y="14" width="304" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dayInNumbers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAe-70-KTh">
+                        <rect key="frame" x="119" y="14" width="82" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.53333333329999999" green="0.65098039220000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pn-9x-Bhx">
+                        <rect key="frame" x="256" y="11" width="36" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.53333333329999999" green="0.65098039220000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dayName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7a-uV-LWe">
+                        <rect key="frame" x="28" y="11" width="54" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="VAe-70-KTh" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="O76-GA-td8"/>
-                    <constraint firstItem="VAe-70-KTh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Zfn-VL-eVD"/>
+                    <constraint firstItem="VAe-70-KTh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="1mD-z7-50k"/>
+                    <constraint firstItem="VAe-70-KTh" firstAttribute="leading" secondItem="z7a-uV-LWe" secondAttribute="trailing" constant="20" id="Jgc-q5-9rB"/>
+                    <constraint firstItem="VAe-70-KTh" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="85" id="O76-GA-td8"/>
+                    <constraint firstItem="z7a-uV-LWe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="UWk-tE-J5a"/>
+                    <constraint firstItem="5pn-9x-Bhx" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="93" id="WXg-q5-191"/>
+                    <constraint firstItem="5pn-9x-Bhx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Xec-Y4-bsG"/>
+                    <constraint firstItem="VAe-70-KTh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="85" id="Zfn-VL-eVD"/>
                     <constraint firstItem="VAe-70-KTh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dQW-vh-km7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5pn-9x-Bhx" secondAttribute="trailing" constant="20" id="ho5-XF-jBV"/>
+                    <constraint firstItem="z7a-uV-LWe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="qXW-vr-3MD"/>
+                    <constraint firstItem="z7a-uV-LWe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="vO7-Kb-d0r"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="z7a-uV-LWe" secondAttribute="bottom" constant="3" id="yec-z5-J9V"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="UWk-tE-J5a"/>
+                        <exclude reference="Jgc-q5-9rB"/>
+                        <exclude reference="O76-GA-td8"/>
+                        <exclude reference="Zfn-VL-eVD"/>
+                        <exclude reference="WXg-q5-191"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="dayNameLabel" destination="z7a-uV-LWe" id="8sA-On-m05"/>
+                <outlet property="totalHoursLabel" destination="5pn-9x-Bhx" id="wpj-Im-eep"/>
                 <outlet property="weekHoursLabel" destination="VAe-70-KTh" id="AQW-cF-1VL"/>
             </connections>
         </tableViewCell>

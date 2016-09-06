@@ -47,6 +47,17 @@ class TodayViewController: UIViewController{
     totalTimeLabel.text = "\(counter):00"
   }
   
+  @IBAction func clearWorkDays(sender: UIBarButtonItem) {
+    let realm = try! Realm()
+    let workdays = try! Realm().objects(Workday)
+    try! realm.write {
+      realm.delete(workdays)
+    }
+    weekTable.reloadData()
+  }
+  
+  
+  
   //*** Tables ***//
   @IBOutlet weak var timepunchTable: UITableView!
   @IBOutlet weak var weekTable: UITableView!
@@ -85,7 +96,7 @@ class TodayViewController: UIViewController{
     todayActive()
 //    counter += 1
 //    totalTimeLabel.text = "\(counter):00"
-    calculateTotalTime(todaysTimePunches)
+    calculateTotalTime(todaysTimePunches, workday: todaysWorkday)
   }
   
   
@@ -146,6 +157,7 @@ class TodayViewController: UIViewController{
     
     timepunchTable.hidden = false
     weekTable.hidden = true
+    totalTimeLabel.hidden = false
     timepunchTable.reloadData()
   }
   
@@ -161,6 +173,7 @@ class TodayViewController: UIViewController{
     fourWeekButtonLabel.setTitleColor(lightGreyNavColor, forState: .Normal)
     timepunchTable.hidden = true
     weekTable.hidden = false
+    totalTimeLabel.hidden = true
     weekTable.reloadData()
   }
   
@@ -190,7 +203,7 @@ class TodayViewController: UIViewController{
     if timePunches.count == 0 {
       currentStatus = false
     }
-    
+    totalTimeLabel.text = todaysWorkday.totalHoursWorked.getHourAndMinuteOutput(todaysWorkday.totalHoursWorked)
     print("testing date \(testDate.toString(format: .Custom("dd MMM yyyy HH:mm:ss")))")
   }
   
@@ -274,8 +287,10 @@ class TodayViewController: UIViewController{
         let cell = tableView.dequeueReusableCellWithIdentifier("weekHoursCell") as! WeekHoursTableViewCell
 //        print ("pressed week")
 //        print(weekDays.count)
-          let workday = weekDays[indexPath.row]
-          cell.weekHoursLabel.text = workday.dayDate!.toString(format: .Custom("dd MMM YYYY"))
+        let workday = weekDays[indexPath.row]
+        cell.weekHoursLabel.text = workday.dayDate!.toString(format: .Custom("dd MMM YYYY"))
+        cell.totalHoursLabel.text = workday.totalHoursWorked.getHourAndMinuteOutput(workday.totalHoursWorked)
+        cell.dayNameLabel.text = workday.dayDate?.toString(format: .Custom("EEEE"))
         return cell
         
       } else {
