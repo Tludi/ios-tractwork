@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
-    
+//    let config = Realm.Configuration(
+//      
+//      schemaVersion: 1,
+//      migrationBlock: { migration, oldSchemaVersion in
+//        if (oldSchemaVersion < 1) {
+//          // Realm will automatically detect and update properties in the database
+//          migration.enumerate(Workday.className()) { oldObject, newObject in
+//            newObject!["dayDate"] = oldObject!["dayDate"]
+//          }
+//          migration.enumerate(TimePunch.className()) { oldObject, newObject in
+//            newObject!["dayDate"] = oldObject!["dayDate"]
+//          }
+//        }
+//      
+//    })
+//    Realm.Configuration.defaultConfiguration = config
+//    let realm = try! Realm(configuration: config)
     
     return true
   }

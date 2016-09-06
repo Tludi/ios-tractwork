@@ -15,14 +15,15 @@ class TodayViewController: UIViewController{
   var currentStatus = false
   
   // DA Objects
+  var workdayCount = 0
   let todaysDate = DA_Date()
   var todaysWorkday = Workday()
   var testDate = NSDate()
   
   // Realm Database queries
-  let realm = try! Realm()
-  let timePunches = try! Realm().objects(TimePunch)
-  var weekDays = try! Realm().objects(Workday) // need to limit for this week
+//  let realm = try! Realm()
+//  let timePunches = try! Realm().objects(TimePunch)
+//  var weekDays = try! Realm().objects(Workday) // need to limit for this week
   
   
   
@@ -36,10 +37,14 @@ class TodayViewController: UIViewController{
   
 
   @IBAction func clearTimePunches(sender: UIBarButtonItem) {
+    let realm = try! Realm()
+    let timePunches = try! Realm().objects(TimePunch)
     try! realm.write {
       realm.delete(timePunches)
     }
     timepunchTable.reloadData()
+    counter = 0
+    totalTimeLabel.text = "\(counter):00"
   }
   
   //*** Tables ***//
@@ -51,6 +56,7 @@ class TodayViewController: UIViewController{
   //*** Labels ***//
   @IBOutlet weak var nsDateLabel: UILabel!
   @IBOutlet weak var testForWorkdayLabel: UILabel!
+  @IBOutlet weak var totalTimeLabel: UILabel!
   
   //*** Button Outlets ***//
   @IBOutlet weak var timepunchButtonOutlet: UIButton!
@@ -58,10 +64,12 @@ class TodayViewController: UIViewController{
   
   
   // *** Actions for touching in/out button
+  var counter = 0
   @IBAction func timepunchButton(sender: UIButton) {
+    
     let newTimePunch = TimePunch()
     let todaysTimePunches = todaysWorkday.timePunches
-    
+    let realm = try! Realm()
     
     try! realm.write {
       currentStatus = !currentStatus
@@ -75,25 +83,48 @@ class TodayViewController: UIViewController{
     print("\(todaysTimePunches.count) timePunches")
     timepunchTable.reloadData()
     todayActive()
+//    counter += 1
+//    totalTimeLabel.text = "\(counter):00"
+    calculateTotalTime(todaysTimePunches)
   }
   
   
+//  func calculateTotalTime(todaysTimePunches: List<TimePunch>) {
+//    print("\(todaysTimePunches.count) from calculations")
+//    
+//    counter += 1
+//    totalTimeLabel.text = "\(counter):00"
+//  }
+  
+  
+  
+  
+  
+  
+  // *** Need to install ability to show past days
+  // *** Not working yet
+  @IBAction func backWorkdayButton(sender: UIButton) {
+    workdayCount += 1
+  }
+  
+  // do not need anymore
   @IBAction func checkWorkday(sender: UIBarButtonItem) {
-    let workday = DA_Workday()
-    let todaysWorkday = workday.doesTodaysWorkdayExist()
-    
-    if todaysWorkday {
-      testForWorkdayLabel.text = "Today has a workday"
-    } else {
-      testForWorkdayLabel.text = "Today is missing a workday"
-    }
+//    let workday = DA_Workday()
+//    let todaysWorkday = workday.doesTodaysWorkdayExist()
+//    
+//    if todaysWorkday {
+//      testForWorkdayLabel.text = "Today has a workday"
+//    } else {
+//      testForWorkdayLabel.text = "Today is missing a workday"
+//    }
   }
   
+  // do not need anymore
   @IBAction func addWorkday(sender: UIBarButtonItem) {
-    let workday = DA_Workday()
-    
-    workday.createTodaysWorkday()
-    
+//    let workday = DA_Workday()
+//    
+//    workday.createTodaysWorkday()
+//    
   }
   
   
@@ -156,12 +187,9 @@ class TodayViewController: UIViewController{
     print(todaysWorkday.dayDate)
     print("\(todaysWorkday.timePunches.count) timePunches for today")
     let timePunches = todaysWorkday.timePunches
-    for object in timePunches {
-      print(object.punchTime)
+    if timePunches.count == 0 {
+      currentStatus = false
     }
-    
-    
-//    testDate = now.isToday?
     
     print("testing date \(testDate.toString(format: .Custom("dd MMM yyyy HH:mm:ss")))")
   }
@@ -170,7 +198,7 @@ class TodayViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    let timePunches = try! Realm().objects(TimePunch)
     print("\(timePunches.count) timepunches in database")
     
     timepunchTable.registerNib(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
@@ -204,7 +232,8 @@ class TodayViewController: UIViewController{
 
   
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+      let weekDays = try! Realm().objects(Workday) // need to limit for this week
+      
       if tableView == timepunchTable {
         let todaysTimePunches = todaysWorkday.timePunches
         return todaysTimePunches.count
@@ -218,9 +247,7 @@ class TodayViewController: UIViewController{
   
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let todaysTimePunches = todaysWorkday.timePunches
-//      for object in todaysTimePunches {
-//        print(object.punchTime)
-//      }
+      let weekDays = try! Realm().objects(Workday) // need to limit for this week
       
       if tableView == timepunchTable {
         
@@ -230,8 +257,10 @@ class TodayViewController: UIViewController{
 
         if timePunch.status {
           cell.statusLabel.text = "IN"
+          cell.statusColorImage.image = UIImage(named: "smGreenCircle")
         } else {
           cell.statusLabel.text = "OUT"
+          cell.statusColorImage.image = UIImage(named: "smRedCircle")
         }
 //        timePunchLabel.text = timePunch.punchTime
         cell.timePunchLabel.text = "\(timePunch.punchTime!.toString(format: .Custom("hh:mm:ss")))"
@@ -246,8 +275,8 @@ class TodayViewController: UIViewController{
 //        print ("pressed week")
 //        print(weekDays.count)
           let workday = weekDays[indexPath.row]
-          cell.weekHoursLabel.text = workday.dayDate
-          return cell
+          cell.weekHoursLabel.text = workday.dayDate!.toString(format: .Custom("dd MMM YYYY"))
+        return cell
         
       } else {
         let cell = tableView.dequeueReusableCellWithIdentifier("notUsed")

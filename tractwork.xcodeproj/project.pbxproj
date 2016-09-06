@@ -12,6 +12,7 @@
 		009CE1D61D6F6AA1006FF612 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CE1D51D6F6AA1006FF612 /* DateFormatting.swift */; };
 		00A4B3751D74BFB7007C9F37 /* WeekHoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A4B3731D74BFB7007C9F37 /* WeekHoursTableViewCell.swift */; };
 		00A4B3761D74BFB7007C9F37 /* WeekHoursTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A4B3741D74BFB7007C9F37 /* WeekHoursTableViewCell.xib */; };
+		00E628EA1D7E298600FAD498 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E628E91D7E298600FAD498 /* extensions.swift */; };
 		00F066F41D656334003F5EAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F066F31D656334003F5EAE /* AppDelegate.swift */; };
 		00F066F91D656334003F5EAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F066F71D656334003F5EAE /* Main.storyboard */; };
 		00F066FB1D656334003F5EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F066FA1D656334003F5EAE /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		009CE1D51D6F6AA1006FF612 /* DateFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		00A4B3731D74BFB7007C9F37 /* WeekHoursTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekHoursTableViewCell.swift; sourceTree = "<group>"; };
 		00A4B3741D74BFB7007C9F37 /* WeekHoursTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekHoursTableViewCell.xib; sourceTree = "<group>"; };
+		00E628E91D7E298600FAD498 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		00F066F01D656334003F5EAE /* tractwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tractwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F066F31D656334003F5EAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F066F81D656334003F5EAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				00F066F31D656334003F5EAE /* AppDelegate.swift */,
 				00F066FA1D656334003F5EAE /* Assets.xcassets */,
 				00F066FF1D656334003F5EAE /* Info.plist */,
+				00E628E91D7E298600FAD498 /* extensions.swift */,
 			);
 			name = "Support Files";
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				00F159C61D79FF9D009554E8 /* DA_Workday.swift in Sources */,
 				009CE1D61D6F6AA1006FF612 /* DateFormatting.swift in Sources */,
 				00A4B3751D74BFB7007C9F37 /* WeekHoursTableViewCell.swift in Sources */,
+				00E628EA1D7E298600FAD498 /* extensions.swift in Sources */,
 				00F0670A1D667EB9003F5EAE /* Realm_Models.swift in Sources */,
 				001E90081D74ACA70007D6A8 /* TimePunchTableViewCell.swift in Sources */,
 				00F066F41D656334003F5EAE /* AppDelegate.swift in Sources */,

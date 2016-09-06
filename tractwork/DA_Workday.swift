@@ -8,13 +8,14 @@
 
 import Foundation
 import RealmSwift
+import AFDateHelper
 
 class DA_Workday {
   let realm = try! Realm()
   let date = DA_Date()
   
   var id = "1"
-  var dayDate = String()
+  var dayDate: NSDate? = nil
   var project = "General Work"
   var totalHoursWorked = 8
   var worker = "milo"
@@ -37,7 +38,7 @@ class DA_Workday {
     if areThereAnyWorkdays() {
       for i in 0 ..< allWorkdays.count {
         workday = allWorkdays[i]
-        if workday.dayDate == date.today() {
+        if workday.dayDate!.isToday() {
 //          print("Workday from DB - \(workday.id)")
           todaysWorkday.id = workday.id
 //          print("Workday copy to use - \(todaysWorkday.id)")
@@ -76,7 +77,7 @@ class DA_Workday {
     let newWorkday = Workday()
     let todaysWorkday = DA_Workday()
     newWorkday.id = NSUUID().UUIDString
-    newWorkday.dayDate = DA_Date().today()
+    newWorkday.dayDate = NSDate()
     
     try! realm.write() {
       self.realm.add(newWorkday)

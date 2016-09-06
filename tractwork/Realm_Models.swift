@@ -20,7 +20,7 @@ import AFDateHelper
 
 class Workday: Object {
   dynamic var id = ""
-  dynamic var dayDate = String()
+  dynamic var dayDate: NSDate? = nil
   dynamic var project = "general work"
   dynamic var totalHoursWorked = 8
   dynamic var worker = "milo"
