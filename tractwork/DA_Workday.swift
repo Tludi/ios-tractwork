@@ -24,8 +24,10 @@ class DA_Workday {
   
   func areThereAnyWorkdays() -> Bool {
     if allWorkdays.count == 0 {
+      print("no workdays (areThereAnyWorkdays())")
       return false
     } else {
+      print("workdays exist (areThereAnyWorkdays())")
       return true
     }
   }
@@ -39,21 +41,22 @@ class DA_Workday {
       for i in 0 ..< allWorkdays.count {
         workday = allWorkdays[i]
         if workday.dayDate!.isToday() {
-//          print("Workday from DB - \(workday.id)")
+          print("Workday from DB - \(workday.id)")
           todaysWorkday.id = workday.id
-//          print("Workday copy to use - \(todaysWorkday.id)")
+          print("Workday copy to use - \(todaysWorkday.id)")
           todaysWorkday.dayDate = workday.dayDate
           
         } else {
-          print("creating workday")
+          print("creating workday (retrieveTodaysWorkday())")
           todaysWorkday.createTodaysWorkday()
         }
       }
     } else {
-      todaysWorkday.createTodaysWorkday()
+      workday = todaysWorkday.createTodaysWorkday()
+      print("created workday (retrieveTodaysWorkday())")
     }
     
-    print("workday exists")
+    print("workday exists (retrieveTodaysWorkday())")
     return workday
   }
   
@@ -82,7 +85,7 @@ class DA_Workday {
     try! realm.write() {
       self.realm.add(newWorkday)
     }
-    print("created workday")
+    print("created workday (createTodaysWorkday()")
     print("\(allWorkdays.count) workdays" )
     todaysWorkday.id = newWorkday.id
     print("new Todays workday id \(todaysWorkday.id)")

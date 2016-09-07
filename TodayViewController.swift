@@ -16,7 +16,7 @@ class TodayViewController: UIViewController{
   
   // DA Objects
   var workdayCount = 0
-  let todaysDate = DA_Date()
+  let todaysDate = NSDate()
   var todaysWorkday = Workday()
   var testDate = NSDate()
   
@@ -32,8 +32,6 @@ class TodayViewController: UIViewController{
   let lightGreyNavColor = UIColor(red: 136.0/255.0, green: 166.0/255.0, blue: 173.0/255.0, alpha: 0.95)
   let tableColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
   
-  @IBOutlet weak var dayNameLabel: UILabel!
-  @IBOutlet weak var dayNumberLabel: UILabel!
   
 
   @IBAction func clearTimePunches(sender: UIBarButtonItem) {
@@ -66,7 +64,6 @@ class TodayViewController: UIViewController{
   
   //*** Labels ***//
   @IBOutlet weak var nsDateLabel: UILabel!
-  @IBOutlet weak var testForWorkdayLabel: UILabel!
   @IBOutlet weak var totalTimeLabel: UILabel!
   
   //*** Button Outlets ***//
@@ -100,43 +97,13 @@ class TodayViewController: UIViewController{
   }
   
   
-//  func calculateTotalTime(todaysTimePunches: List<TimePunch>) {
-//    print("\(todaysTimePunches.count) from calculations")
-//    
-//    counter += 1
-//    totalTimeLabel.text = "\(counter):00"
-//  }
-  
-  
-  
-  
-  
-  
   // *** Need to install ability to show past days
   // *** Not working yet
   @IBAction func backWorkdayButton(sender: UIButton) {
     workdayCount += 1
   }
   
-  // do not need anymore
-  @IBAction func checkWorkday(sender: UIBarButtonItem) {
-//    let workday = DA_Workday()
-//    let todaysWorkday = workday.doesTodaysWorkdayExist()
-//    
-//    if todaysWorkday {
-//      testForWorkdayLabel.text = "Today has a workday"
-//    } else {
-//      testForWorkdayLabel.text = "Today is missing a workday"
-//    }
-  }
-  
-  // do not need anymore
-  @IBAction func addWorkday(sender: UIBarButtonItem) {
-//    let workday = DA_Workday()
-//    
-//    workday.createTodaysWorkday()
-//    
-  }
+
   
   
   //*** Table Nav Bar ***//
@@ -192,27 +159,21 @@ class TodayViewController: UIViewController{
   
   
   //**** process view  ****//
+  override func viewDidLoad() {
+    super.viewDidLoad()
   
-  override func viewWillAppear(animated: Bool) {
     // retrieve or create todays workday
     let workday = DA_Workday()
     todaysWorkday = workday.retrieveTodaysWorkday()
-    print(todaysWorkday.dayDate)
+    print(todaysWorkday.dayDate!)
     print("\(todaysWorkday.timePunches.count) timePunches for today")
     let timePunches = todaysWorkday.timePunches
     if timePunches.count == 0 {
       currentStatus = false
     }
     totalTimeLabel.text = todaysWorkday.totalHoursWorked.getHourAndMinuteOutput(todaysWorkday.totalHoursWorked)
-    print("testing date \(testDate.toString(format: .Custom("dd MMM yyyy HH:mm:ss")))")
-  }
+//    print("testing date \(testDate.toString(format: .Custom("dd MMM yyyy HH:mm:ss")))")
   
-  
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    let timePunches = try! Realm().objects(TimePunch)
-    print("\(timePunches.count) timepunches in database")
     
     timepunchTable.registerNib(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
     weekTable.registerNib(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
@@ -225,10 +186,10 @@ class TodayViewController: UIViewController{
     todayNavBox.backgroundColor = lightGreyNavColor
     todayButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
     
-    dayNameLabel.text = todaysDate.DayOfTheWeek()
-    dayNumberLabel.text = todaysDate.NumberOfTheDay()
+//    dayNameLabel.text = todaysDate.DayOfTheWeek()
+//    dayNumberLabel.text = todaysDate.NumberOfTheDay()
     nsDateLabel.textColor = UIColor.whiteColor()
-    nsDateLabel.text = "\(todaysDate.date)"
+    nsDateLabel.text = todaysWorkday.dayDate!.toString(format: .Custom("EEEE, MMMM dd, YYYY"))
     
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
