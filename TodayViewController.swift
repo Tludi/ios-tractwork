@@ -12,7 +12,7 @@ import AFDateHelper
 
 class TodayViewController: UIViewController{
   
-  var currentStatus = false
+  var currentStatus = Bool()
   
   // DA Objects
   var workdayCount = 0
@@ -36,13 +36,15 @@ class TodayViewController: UIViewController{
 
   @IBAction func clearTimePunches(sender: UIBarButtonItem) {
     let realm = try! Realm()
-    let timePunches = try! Realm().objects(TimePunch)
+//    let timePunches = try! Realm().objects(TimePunch)
+    let timePunches = todaysWorkday.timePunches
     try! realm.write {
       realm.delete(timePunches)
+      todaysWorkday.totalHoursWorked = 0.0
     }
     timepunchTable.reloadData()
-    counter = 0
-    totalTimeLabel.text = "\(counter):00"
+//    counter = 0
+//    totalTimeLabel.text = "\(counter):00"
   }
   
   @IBAction func clearWorkDays(sender: UIBarButtonItem) {
@@ -65,6 +67,7 @@ class TodayViewController: UIViewController{
   //*** Labels ***//
   @IBOutlet weak var nsDateLabel: UILabel!
   @IBOutlet weak var totalTimeLabel: UILabel!
+  @IBOutlet weak var totalTimeView: UIView!
   
   //*** Button Outlets ***//
   @IBOutlet weak var timepunchButtonOutlet: UIButton!
@@ -102,9 +105,6 @@ class TodayViewController: UIViewController{
   @IBAction func backWorkdayButton(sender: UIButton) {
     workdayCount += 1
   }
-  
-
-  
   
   //*** Table Nav Bar ***//
   
@@ -161,16 +161,34 @@ class TodayViewController: UIViewController{
   //**** process view  ****//
   override func viewDidLoad() {
     super.viewDidLoad()
-  
+    print("current status on view load - \(currentStatus)")
+    
     // retrieve or create todays workday
     let workday = DA_Workday()
     todaysWorkday = workday.retrieveTodaysWorkday()
     print(todaysWorkday.dayDate!)
     print("\(todaysWorkday.timePunches.count) timePunches for today")
     let timePunches = todaysWorkday.timePunches
+    
     if timePunches.count == 0 {
       currentStatus = false
+//      timepunchButtonOutlet.setImage(UIImage(named: "InGreenButton"), forState: .Normal)
+    } else {
+      currentStatus = timePunches.last!.status
+//      if currentStatus {
+//        timepunchButtonOutlet.setImage(UIImage(named: "OutRedButton"), forState: .Normal)
+//      } else {
+//        timepunchButtonOutlet.setImage(UIImage(named: "InGreenButton"), forState: .Normal)
+//      }
     }
+    
+    if currentStatus == false {
+      timepunchButtonOutlet.setImage(UIImage(named: "InGreenButton"), forState: .Normal)
+    } else {
+      timepunchButtonOutlet.setImage(UIImage(named: "OutRedButton"), forState: .Normal)
+    }
+    
+    
     totalTimeLabel.text = todaysWorkday.totalHoursWorked.getHourAndMinuteOutput(todaysWorkday.totalHoursWorked)
 //    print("testing date \(testDate.toString(format: .Custom("dd MMM yyyy HH:mm:ss")))")
   
@@ -182,6 +200,8 @@ class TodayViewController: UIViewController{
     timepunchTable.backgroundColor = tableColor
     weekTable.backgroundColor = tableColor
     weekTable.hidden = true
+    
+    totalTimeView.backgroundColor = tableColor
     
     todayNavBox.backgroundColor = lightGreyNavColor
     todayButtonLabel.setTitleColor(darkGreyNavColor, forState: .Normal)
@@ -195,7 +215,7 @@ class TodayViewController: UIViewController{
     self.navigationController?.navigationBar.shadowImage = UIImage()
     self.navigationController?.navigationBar.translucent = true
     
-    timepunchButtonOutlet.layer.cornerRadius = 75
+ 
   }
 
   
@@ -237,7 +257,7 @@ class TodayViewController: UIViewController{
           cell.statusColorImage.image = UIImage(named: "smRedCircle")
         }
 //        timePunchLabel.text = timePunch.punchTime
-        cell.timePunchLabel.text = "\(timePunch.punchTime!.toString(format: .Custom("hh:mm:ss")))"
+        cell.timePunchLabel.text = "\(timePunch.punchTime!.toString(format: .Custom("hh:mm")))"
 //        cell.timePunchLabel.text = "Hello"
 
         return cell

@@ -32,9 +32,9 @@ extension Double {
     let total = modf(total)
     let hr = Int(total.0)
     let min = Int(total.1.roundToPlaces(2)*60)
-    print("\(total) hours calculated")
     
     let totalTimeText = "\(hr):\(min)"
+    print("\(totalTimeText) hours calculated")
     return totalTimeText
   }
 }
@@ -82,7 +82,7 @@ extension TodayViewController {
   
   func calculateTotalTime(timePunches: List<TimePunch>, workday: Workday) {
     // Start Counter for total time for the day
-    var totalCounter = 0.0
+    var totalCounter = 0.00
     // put the dayDate (NSDate?) for each day and put in array
     let pulledTimes = pullTimePunchTimes(timePunches) // [NSDate?]
     // Convert NSDate? array to Double (hr.min) array
@@ -100,13 +100,6 @@ extension TodayViewController {
     try! realm.write() {
       workday.totalHoursWorked = totalCounter
     }
-    
-    // split total time into whole and decimal to convert to minutes
-//    let total = modf(totalCounter)
-//    let hr = Int(total.0)
-//    let min = Int(total.1.roundToPlaces(2)*60)
-//    print("\(timePunches.count) from calculations")
-//    print("\(total) hours calculated")
     
     totalTimeLabel.text = totalCounter.getHourAndMinuteOutput(totalCounter)
   }

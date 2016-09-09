@@ -27,5 +27,17 @@ class TimePunchTableViewCell: UITableViewCell {
 
       // Configure the view for the selected state
   }
+  
+  override func drawRect(rect: CGRect) {
+    let path = UIBezierPath()
+    
+    path.moveToPoint(CGPoint(x: 122, y: 0))
+    path.addLineToPoint(CGPoint(x: 122, y: 44))
+    path.lineWidth = 2.0
+    path.closePath()
+    UIColor.grayColor().set()
+    path.stroke()
+    path.fill()
+  }
     
 }

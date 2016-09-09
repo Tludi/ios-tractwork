@@ -9,10 +9,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timePunchCell" id="KGk-i7-Jjw" customClass="TimePunchTableViewCell" customModule="tractwork" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TimePunch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYc-Qz-8fW">
@@ -22,14 +22,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smGreenCircle" translatesAutoresizingMaskIntoConstraints="NO" id="I4z-tn-3Al">
-                        <rect key="frame" x="122" y="7" width="30" height="30"/>
+                        <rect key="frame" x="222" y="10" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="YnE-4A-v5L"/>
-                            <constraint firstAttribute="height" constant="30" id="oBa-aU-B6B"/>
+                            <constraint firstAttribute="width" constant="25" id="YnE-4A-v5L"/>
+                            <constraint firstAttribute="height" constant="25" id="oBa-aU-B6B"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mZ-8i-VFz">
-                        <rect key="frame" x="127" y="17" width="21" height="11"/>
+                        <rect key="frame" x="224" y="17" width="21" height="11"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
                         <color key="textColor" red="0.99747474749999998" green="0.99747474749999998" blue="0.99747474749999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,9 +41,10 @@
                     <constraint firstItem="I4z-tn-3Al" firstAttribute="leading" secondItem="NYc-Qz-8fW" secondAttribute="trailing" constant="30" id="4os-3l-acm"/>
                     <constraint firstItem="NYc-Qz-8fW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="EXG-f1-Vyy"/>
                     <constraint firstItem="I4z-tn-3Al" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="TKQ-tu-tWL"/>
+                    <constraint firstAttribute="trailing" secondItem="I4z-tn-3Al" secondAttribute="trailing" constant="53" id="TTH-IR-WJz"/>
                     <constraint firstItem="NYc-Qz-8fW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="U5e-p6-rdg"/>
                     <constraint firstItem="1mZ-8i-VFz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Utl-Mv-3cn"/>
-                    <constraint firstItem="I4z-tn-3Al" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jbi-EU-Bb4"/>
+                    <constraint firstItem="I4z-tn-3Al" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="1" id="jbi-EU-Bb4"/>
                     <constraint firstItem="1mZ-8i-VFz" firstAttribute="centerY" secondItem="I4z-tn-3Al" secondAttribute="centerY" id="nzv-Cr-55r"/>
                     <constraint firstItem="1mZ-8i-VFz" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="qUO-ei-OcP"/>
                     <constraint firstItem="NYc-Qz-8fW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="tAI-eu-jKr"/>
@@ -52,9 +53,10 @@
                     <mask key="constraints">
                         <exclude reference="3rS-kh-Nld"/>
                         <exclude reference="EXG-f1-Vyy"/>
-                        <exclude reference="TKQ-tu-tWL"/>
                         <exclude reference="Utl-Mv-3cn"/>
                         <exclude reference="qUO-ei-OcP"/>
+                        <exclude reference="4os-3l-acm"/>
+                        <exclude reference="TKQ-tu-tWL"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -64,6 +66,7 @@
                 <outlet property="statusLabel" destination="1mZ-8i-VFz" id="VAQ-k1-DzS"/>
                 <outlet property="timePunchLabel" destination="NYc-Qz-8fW" id="8tV-Jf-agM"/>
             </connections>
+            <point key="canvasLocation" x="310" y="476"/>
         </tableViewCell>
     </objects>
     <resources>
